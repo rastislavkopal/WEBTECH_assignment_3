@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <title>Registrácia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <script src="./js/myScript.js"></script>
+</head>
+<body>
+
+    <section class="container bg-light mt-4 rounded">
+        <h3 class="text-center p-2 text-danger text-uppercase font-weight-bold">Registrácia</h3>
+
+        <form onsubmit="validateForm()" action="http://iolab.sk/form2mail/form2mail.php" method="post" enctype="multipart/form-data">
+         <!--   <form onsubmit="validateForm()" action="mailto:rasto.kopal@gmail.com" method="post" enctype="text/plain">-->
+    <!--Api needed items-->
+    <input type="hidden" id="apikey" name="apikey" value="163605168e9bf85ace2a2623f81fa4d3">
+    <input type="hidden" id="sender" name="sender" value="Rastislav Kopal">
+    <input type="hidden" id="to" name="to" value="feistu03@gmail.com"> <!---->
+    <input type="hidden" id="subject" name="subject" value="Email z webu">
+    <input type="hidden" id="redirectOk" name="redirectOk" value="http://147.175.121.202/~xkopalr1/ijkzadanie2">
+    <input type="hidden" id="redirectFalse" name="redirectFalse" value="http://147.175.121.202/~xkopalr1/xyzzadanie1/">
+           
+     <!-- firstname lastname-->
+            <div class="form-row">
+                <div class="form-group col-xs-12 col-md-6">
+                    <label for="firstName"><span class="req">*</span> Krstné meno:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Janko" onchange="validateTextField(this)" required> 
+                    <p id="firstNameErrMessage">Toto pole musí obsahovať najmenej 3 znaky.</p>
+                </div>
+                <div class="clearfix visible-xs-block"></div>
+
+                <div class="form-group col-xs-12 col-md-6">
+                    <label for="lastName">Priezvisko</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Mrkvička">
+                </div>
+                
+            </div>
+
+    <!-- Birth date and age-->   
+            <div class="form-row">
+                <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                    <label for="birthDate"><span class="req">* </span>Dátum narodenia:</label>
+                    <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+                </div>
+                <div class="clearfix visible-xs-block"></div>
+
+                <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                    <label for="age"><span class="req">* </span>Vek</label>
+                    <input type="number" class="form-control" id="age" name="age" placeholder="21" required>
+                </div>
+                
+                <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                    <label for="from"><span class="req">* </span>Emailová adresa</label>
+                    <input type="email" class="form-control" id="from" name="from" placeholder="janko.mrkvicka@pokec.sk" onchange="validateEmail()" required>
+                    <p id="emailErrMessage">Email: musi byt len taky ze: {3,n}@{1,n}.{2,4}</p>
+                </div>
+                
+            </div>
+            
+    <!-- Check box part-->
+            <div class="form-check">
+
+                <label for="checkBox-man">Pohlavie:</label><br>
+                <input class="form-check-input" type="radio" name="sex" id="checkBox-man" value="man" checked onchange="displayChecked()">
+                <label class="form-check-label" for="checkBox-man">Muž</label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="sex" id="checkBox-woman" value="woman" onchange="displayChecked()">
+                <label class="form-check-label" for="checkBox-woman">žena</label>
+              </div>
+
+              <div class="form-check disabled">
+                <input class="form-check-input" type="radio" name="sex" id="checkBox-other" value="other" onchange="displayChecked()">
+                <label class="form-check-label" for="checkBox-other">Iné</label>
+              </div>
+                    <div class="form-row col-xs-12 col-md-6" id="sexInputDiv">
+                        <input type="text" class="form-control" id="sexInput" name="sexInput" placeholder="Na čo sa cítim." disabled>
+                    </div>
+              <br>
+
+    <!--Am I a programmer-->
+            <div class="form-row">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="whoIreallyAm" id="isNotProgrammer" value="isNotProgrammer" onchange="displaycontinue()" checked>
+                    <label class="form-check-label" for="isNotProgrammer">Nie som programátor</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="whoIreallyAm" id="isProgrammer" value="isProgrammer" onchange="displaycontinue()">
+                    <label class="form-check-label" for="isProgrammer">Som programátor</label>
+                </div> 
+            </div>
+
+    <!-- Select menu -->
+            <div id="selectMenu">
+                <select class="custom-select w-75 m-1" name="programmingLanguage" id="selectMenu1" onchange="chooseSelect(this)" disabled>
+                    <option selected value="Cpp">Cpp</option>
+                    <option value="Kotlin">Kotlin</option>
+                    <option value="JavaScript">JavaScript</option>
+                </select>
+
+                <select class="custom-select w-75 m-1" name="whyThatLanguage" id="selectMenu2" onchange="chooseSelect(this)" disabled>
+                    <option selected value="Efektivita">Efektivita</option>
+                    <option value="Zvyk">Zvyk</option>
+                    <option value="Bolest">Bolest</option>
+                </select>
+
+                <select class="custom-select w-75 m-1" name="whyIsThatSo" id="selectMenu3" onchange="chooseSelect(this)" disabled>
+                    <option selected value="Čo je rýchlo, to je dobre">Čo je rýchlo, to je dobre</option>
+                    <option value="Milujem efektivitu">Milujem efektivitu</option>
+                    <option value="Ani neviem">Ani neviem</option>
+                </select>
+            </div>
+
+            <div class="form-group m-2">
+                <label for="whyBonusPoint">Prečo si tento formulár zaslúži plus body:</label>
+                <textarea class="form-control" id="whyBonusPoint" name="whyBonusPoint" rows="3"></textarea>
+            </div>
+
+            <button type="submit"  class="btn btn-primary m-2" >Odoslať</button > 
+        </form>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>

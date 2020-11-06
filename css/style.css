@@ -1,0 +1,65 @@
+html {
+    font-size: 1.2rem;
+    height: 100%;
+    width: 100%;
+}
+body{
+    font-family: 'Titillium Web', sans-serif;
+    height: 100%;
+    width: 100%;
+    background: url('../img/bg1.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.req{
+    color: tomato;
+    font-weight: bold;
+}
+
+#firstNameErrMessage{
+    display: none;
+    color: tomato;
+}
+
+#emailErrMessage{
+    display: none;
+    color: tomato;
+}
+
+#sexInputDiv{
+    display: none;
+}
+
+#selectMenu{
+    display: none;
+}
+
+:required {
+    border: 3px solid gold;
+    border-radius: 4px;
+}
+
+/* style all input elements with a required attribute */
+/* input:required {
+    box-shadow: 4px 4px 20px rgba(200, 0, 0, 0.808);
+  } */
+  
+  /**
+   * style input elements that have a required
+   * attribute and a focus state
+   */
+  /* input:required:focus {
+    border: 2px solid red;
+    outline: none;
+  } */
+  
+  /**
+   * style input elements that have a required
+   * attribute and a hover state
+   */
+  /* input:required:hover {
+    opacity: 1;
+  }  */
